@@ -1,0 +1,43 @@
+package com.techhub.laptopinventory.app;
+
+import com.techhub.laptopinventory.dao.LaptopDao;
+import com.techhub.laptopinventory.entity.Laptop;
+
+import java.util.List;
+
+public class LaptopDriver {
+    public static void main(String[] args) {
+        LaptopDao dao = new LaptopDao();
+
+        // CREATE
+         //dao.addLaptop(new Laptop(1, "Dell", "XPS 15", 150000, "Intel i7 13th Gen"));
+           dao.addLaptop(new Laptop(2, "Dell14", "XPS 15", 150000, "Intel i7 13th Gen"));
+
+        // READ by ID
+//        Laptop l = dao.getLaptopById(2);
+//        if (l != null) {
+//            System.out.println("Found Laptop: " + l.getBrand() + " " + l.getModel() + " | Price: " + l.getPrice());
+//        } else {
+//            System.out.println("No laptop found with given ID");
+//        }
+
+        // UPDATE
+//        if (l != null) {
+//            l.setPrice(155000);
+//            l.setModel("XPS 15 Plus");
+//            dao.updateLaptop(l);
+//        }
+
+        // READ all
+//        List<Laptop> list = dao.getAllLaptops();
+//        System.out.println("\nAll Laptops in DB:");
+//        for (Laptop lap : list) {
+//            System.out.println(lap.getLaptopId() + " | " + lap.getBrand() + " | " + lap.getModel() + " | " + lap.getPrice());
+//        }
+
+        // DELETE
+        // dao.deleteLaptop(1);
+
+        dao.close();
+    }
+}

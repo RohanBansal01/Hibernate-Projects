@@ -1,0 +1,5 @@
+package com.medicare.patientrecords.dao;
+
+public class PatientDao {
+
+}

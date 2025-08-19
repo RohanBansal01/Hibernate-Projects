@@ -1,0 +1,5 @@
+package com.autolux.showroommanagement.dao;
+
+public class CarDao {
+
+}

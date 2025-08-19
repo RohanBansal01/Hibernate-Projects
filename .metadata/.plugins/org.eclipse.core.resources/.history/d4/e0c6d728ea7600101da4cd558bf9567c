@@ -1,0 +1,5 @@
+package com.edumax.studentenrollment.entity;
+
+public class Student {
+
+}

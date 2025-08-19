@@ -1,0 +1,43 @@
+package com.phoneworld.mobileinventory.app;
+
+import com.phoneworld.mobileinventory.dao.MobileDao;
+import com.phoneworld.mobileinventory.entity.Mobile;
+
+import java.util.List;
+
+public class MobileDriver {
+
+    public static void main(String[] args) {
+
+        MobileDao dao = new MobileDao();
+
+        // CREATE
+         dao.addMobile(new Mobile(1, "Samsung", "Galaxy S23", 69999, 128));
+
+        // READ by ID
+        Mobile mobile = dao.getMobileById(1);
+        if (mobile != null) {
+            System.out.println("Found Mobile: " + mobile.getBrand() + " " + mobile.getModel() + ", Price: " + mobile.getPrice() + ", Storage: " + mobile.getStorage() + "GB");
+        } else {
+            System.out.println("No mobile found with given ID");
+        }
+
+        // UPDATE
+        if (mobile != null) {
+            mobile.setPrice(67999);
+            dao.updateMobile(mobile);
+        }
+
+        // READ all
+        List<Mobile> mobiles = dao.getAllMobiles();
+        System.out.println("\nAll Mobiles in DB:");
+        for (Mobile m : mobiles) {
+            System.out.println(m.getMobileId() + " | " + m.getBrand() + " | " + m.getModel() + " | " + m.getPrice() + " | " + m.getStorage() + "GB");
+        }
+
+        // DELETE
+        // dao.deleteMobile(1);
+
+        dao.close();
+    }
+}

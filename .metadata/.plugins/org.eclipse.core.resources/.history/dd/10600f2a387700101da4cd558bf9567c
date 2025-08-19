@@ -1,0 +1,73 @@
+package com.phoneworld.mobileinventory.dao;
+
+import com.phoneworld.mobileinventory.entity.Mobile;
+
+import javax.persistence.*;
+import java.util.List;
+
+public class MobileDao {
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
+
+    public MobileDao() {
+        emf = Persistence.createEntityManagerFactory("phoneworldPU");
+        em = emf.createEntityManager();
+    }
+
+    // CREATE
+    public void addMobile(Mobile mobile) {
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.persist(mobile);
+        et.commit();
+        System.out.println("Mobile added: " + mobile.getBrand() + " " + mobile.getModel());
+    }
+
+    // READ by ID
+    public Mobile getMobileById(int id) {
+        return em.find(Mobile.class, id);
+    }
+
+    // READ all
+    public List<Mobile> getAllMobiles() {
+        return em.createQuery("SELECT m FROM Mobile m", Mobile.class).getResultList();
+    }
+
+    // UPDATE
+    public void updateMobile(Mobile mobile) {
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.merge(mobile);
+        et.commit();
+        System.out.println("Mobile updated: " + mobile.getBrand() + " " + mobile.getModel());
+    }
+
+    // DELETE
+    public void deleteMobile(int id) {
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Mobile m = em.find(Mobile.class, id);
+        if (m != null) {
+            em.remove(m);
+            System.out.println("Deleted Mobile with ID: " + id);
+        }
+        et.commit();
+    }
+    
+    
+    public List<Mobile> getSamsungMobilesBelowPrice(double price) {
+    	
+        String jpql = "SELECT m FROM Mobile m WHERE m.brand = :brand AND m.price < :price";
+        return em.createQuery(jpql, Mobile.class)
+                .setParameter("brand", "Samsung")
+                .setParameter("price", price)
+                .getResultList();
+    }
+
+    // Close resources
+    public void close() {
+        em.close();
+        emf.close();
+    }
+}

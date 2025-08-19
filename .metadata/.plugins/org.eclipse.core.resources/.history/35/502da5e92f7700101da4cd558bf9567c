@@ -1,0 +1,5 @@
+package com.phoneworld.mobileinventory.dao;
+
+public class MobileDao {
+
+}

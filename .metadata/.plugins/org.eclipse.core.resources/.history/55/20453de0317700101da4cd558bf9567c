@@ -1,0 +1,5 @@
+package com.propconnect.realestate.entity;
+
+public class Property {
+
+}

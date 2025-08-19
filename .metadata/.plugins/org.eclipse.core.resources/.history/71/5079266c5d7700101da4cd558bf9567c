@@ -1,0 +1,150 @@
+package com.techhub.laptopinventory.entity;
+
+import java.sql.Timestamp;
+import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+@Entity
+@Table(name = "laptop_table")
+public class Laptop {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq1")
+    @SequenceGenerator(name = "sq1", sequenceName = "laptop_seq", initialValue = 100, allocationSize = 1000)
+    private int laptopId;
+
+    @Column(name = "brand", nullable = false)
+    private String brand;
+
+    @Column(name = "model", nullable = false)
+    private String model;
+
+    @Column(name = "price")
+    private double price;
+
+    @Column(name = "processor")
+    private String processor;
+
+    // Example of @Lob (Large Object) - useful for large text or binary data
+//    @Lob
+//    @Column(name = "description")
+//    private String description;
+
+    // Example of @Enumerated to store enum types
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "laptop_type")
+//    private LaptopType laptopType;
+
+    // @CreationTimestamp automatically sets creation time
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Timestamp createdAt;
+
+    // @UpdateTimestamp automatically sets last updated time
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+
+    // @Transient fields are not persisted in DB
+    @Transient
+    private String temporaryInfo;
+
+    public Laptop() {
+    }
+
+	public Laptop(/* int laptopId, */ String brand, String model, double price, String processor) {
+    	//, String description, LaptopType laptopType) {
+    
+        //this.laptopId = laptopId;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.processor = processor;
+//        this.description = description;
+//        this.laptopType = laptopType;
+    }
+
+    // Getters and setters
+
+    public int getLaptopId() {
+        return laptopId;
+    }
+
+    public void setLaptopId(int laptopId) {
+        this.laptopId = laptopId;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public LaptopType getLaptopType() {
+//        return laptopType;
+//    }
+//
+//    public void setLaptopType(LaptopType laptopType) {
+//        this.laptopType = laptopType;
+//    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+//    public Timestamp getUpdatedAt() {
+//        return updatedAt;
+//    }
+//
+//    public String getTemporaryInfo() {
+//        return temporaryInfo;
+//    }
+//
+//    public void setTemporaryInfo(String temporaryInfo) {
+//        this.temporaryInfo = temporaryInfo;
+//    }
+}
+
+// Define enum LaptopType somewhere, e.g. in the same package
+enum LaptopType {
+    GAMING,
+    ULTRABOOK,
+    BUSINESS,
+    STANDARD
+}

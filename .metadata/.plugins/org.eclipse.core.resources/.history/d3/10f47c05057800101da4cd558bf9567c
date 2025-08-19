@@ -1,0 +1,23 @@
+package com.jsp.secondlevelcaching.app;
+import com.jsp.secondlevelcaching.entity.Mobile;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+
+public class MobileDriver {
+			public static void main(String[] args) {
+			  	EntityManagerFactory  emf = Persistence.createEntityManagerFactory("rohan");
+		    	EntityManager em1 = emf.createEntityManager();
+		    long start = System.currentTimeMillis();
+		    Mobile m1 = em1.find(Mobile.class, 1);
+		    long end = System.currentTimeMillis();
+		    System.out.println(end-start);
+		    Mobile l2 = em1.find(Mobile.class, 2);
+		    System.out.println(l2);
+		    long start2 = System.currentTimeMillis();
+		    Mobile l3 = em1.find(Mobile.class, 1);
+		    long end2 = System.currentTimeMillis();
+		    System.out.println(end2-start2);
+			}
+}

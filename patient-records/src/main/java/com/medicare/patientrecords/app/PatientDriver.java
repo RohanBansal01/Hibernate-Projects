@@ -1,0 +1,44 @@
+package com.medicare.patientrecords.app;
+
+import com.medicare.patientrecords.dao.PatientDao;
+import com.medicare.patientrecords.entity.Patient;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class PatientDriver {
+
+    public static void main(String[] args) {
+
+        PatientDao dao = new PatientDao();
+
+        // CREATE
+        dao.addPatient(new Patient(1, "Alice Smith", 45, "Pneumonia", LocalDate.of(2025, 8, 10)));
+
+        // READ by ID
+        Patient patient = dao.getPatientById(1);
+        if (patient != null) {
+            System.out.println("Found Patient: " + patient.getName() + ", Age: " + patient.getAge() + ", Diagnosis: " + patient.getDiagnosis() + ", Admission Date: " + patient.getAdmissionDate());
+        } else {
+            System.out.println("No patient found with given ID");
+        }
+
+        // UPDATE
+        if (patient != null) {
+            patient.setDiagnosis("Recovered");
+            dao.updatePatient(patient);
+        }
+
+        // READ all
+        List<Patient> patients = dao.getAllPatients();
+        System.out.println("\nAll Patients in DB:");
+        for (Patient p : patients) {
+            System.out.println(p.getPatientId() + " | " + p.getName() + " | " + p.getAge() + " | " + p.getDiagnosis() + " | " + p.getAdmissionDate());
+        }
+
+        // DELETE
+        // dao.deletePatient(1);
+
+        dao.close();
+    }
+}

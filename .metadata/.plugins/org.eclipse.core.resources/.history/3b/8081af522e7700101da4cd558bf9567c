@@ -1,0 +1,5 @@
+package com.streamflix.moviecollection.dao;
+
+public class MovieDao {
+
+}

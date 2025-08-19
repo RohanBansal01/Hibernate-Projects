@@ -1,0 +1,5 @@
+package com.phoneworld.mobileinventory.entity;
+
+public class Mobile {
+
+}

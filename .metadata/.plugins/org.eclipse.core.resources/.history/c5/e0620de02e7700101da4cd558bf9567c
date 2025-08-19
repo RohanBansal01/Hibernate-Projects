@@ -1,0 +1,5 @@
+package com.medicare.patientrecords.entity;
+
+public class Patient {
+
+}

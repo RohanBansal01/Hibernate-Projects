@@ -1,0 +1,80 @@
+package com.jsp.secondlevelcaching.entity;
+
+
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "mobile_table")
+@Cacheable
+public class Mobile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer mobileId;
+
+    @Column(name = "brand", nullable = false)
+    private String brand;
+
+    @Column(name = "model", nullable = false)
+    private String model;
+
+    @Column(name = "price")
+    private double price;
+
+    @Column(name = "storage")
+    private Integer storage;  // nullable
+
+    public Mobile() {
+    }
+
+    // Constructor without mobileId since it is auto-generated
+    public Mobile(String brand, String model, double price, Integer storage) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.storage = storage;
+    }
+
+    // Getters and Setters
+
+    public Integer getMobileId() {
+        return mobileId;
+    }
+
+    public void setMobileId(Integer mobileId) {
+        this.mobileId = mobileId;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Integer getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Integer storage) {
+        this.storage = storage;
+    }
+}

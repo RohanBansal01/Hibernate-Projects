@@ -1,0 +1,5 @@
+package com.jsp.secondlevelcaching.entity;
+
+public class Laptop {
+
+}

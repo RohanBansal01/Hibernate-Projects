@@ -1,0 +1,90 @@
+package com.techhub.laptopinventory.dao;
+
+
+
+import com.techhub.laptopinventory.entity.Laptop;
+
+import javax.persistence.*;
+import java.util.List;
+
+public class LaptopDao {
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
+
+    public LaptopDao() {
+        emf = Persistence.createEntityManagerFactory("rohan");
+        em = emf.createEntityManager();
+    }
+
+    // CREATE
+    public void addLaptop(Laptop laptop) {
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.persist(laptop);
+            et.commit();
+            System.out.println("✅ Laptop inserted: " + laptop.getBrand() + " " + laptop.getModel());
+        } catch (Exception e) {
+            if (et.isActive()) et.rollback();
+            e.printStackTrace();
+        } 
+    }
+
+    // READ by ID
+    public Laptop getLaptopById(int id) {
+        return em.find(Laptop.class, id);
+    }
+
+    // READ all
+    public List<Laptop> getAllLaptops() {
+        return em.createQuery("SELECT l FROM Laptop l", Laptop.class).getResultList();
+    }
+
+    // UPDATE (Safe update pattern)
+    public void updateLaptop(Laptop laptop) {
+        EntityTransaction et = em.getTransaction();
+        try {
+            Laptop existingLaptop = em.find(Laptop.class, laptop.getLaptopId());
+            if (existingLaptop != null) {
+                et.begin();
+                existingLaptop.setBrand(laptop.getBrand());
+                existingLaptop.setModel(laptop.getModel());
+                existingLaptop.setPrice(laptop.getPrice());
+                existingLaptop.setProcessor(laptop.getProcessor());
+                et.commit();
+                System.out.println("✅ Laptop updated: " + existingLaptop.getBrand() + " " + existingLaptop.getModel());
+            } else {
+                System.out.println("⚠ Laptop with ID " + laptop.getLaptopId() + " not found. Update failed.");
+            }
+        } catch (Exception e) {
+            if (et.isActive()) et.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    // DELETE
+    public void deleteLaptop(int id) {
+        EntityTransaction et = em.getTransaction();
+        try {
+            Laptop existingLaptop = em.find(Laptop.class, id);
+            if (existingLaptop != null) {
+                et.begin();
+                em.remove(existingLaptop);
+                et.commit();
+                System.out.println("🗑 Deleted Laptop with ID: " + id);
+            } else {
+                System.out.println("⚠ Laptop with ID " + id + " not found. Delete failed.");
+            }
+        } catch (Exception e) {
+            if (et.isActive()) et.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    // Close resources
+    public void close() {
+        if (em != null) em.close();
+        if (emf != null) emf.close();
+    }
+}

@@ -1,0 +1,5 @@
+package com.propconnect.realestate.dao;
+
+public class PropertyDao {
+
+}

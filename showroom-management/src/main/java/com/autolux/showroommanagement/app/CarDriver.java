@@ -1,0 +1,43 @@
+package com.autolux.showroommanagement.app;
+
+import com.autolux.showroommanagement.dao.CarDao;
+import com.autolux.showroommanagement.entity.Car;
+
+import java.util.List;
+
+public class CarDriver {
+
+    public static void main(String[] args) {
+
+        CarDao dao = new CarDao();
+
+        // CREATE
+         dao.addCar(new Car(1, "Toyota", "Corolla", 20000, "Petrol"));
+
+        // READ by ID
+        Car car = dao.getCarById(1);
+        if (car != null) {
+            System.out.println("Found Car: " + car.getBrand() + " " + car.getModel() + " | Price: " + car.getPrice() + " | Fuel: " + car.getFuelType());
+        } else {
+            System.out.println("No car found with given ID");
+        }
+
+        // UPDATE
+        if (car != null) {
+            car.setPrice(21000);
+            dao.updateCar(car);
+        }
+
+        // READ all
+        List<Car> cars = dao.getAllCars();
+        System.out.println("\nAll Cars in DB:");
+        for (Car c : cars) {
+            System.out.println(c.getCarId() + " | " + c.getBrand() + " | " + c.getModel() + " | " + c.getPrice() + " | " + c.getFuelType());
+        }
+
+        // DELETE
+        // dao.deleteCar(1);
+
+        dao.close();
+    }
+}

@@ -1,0 +1,5 @@
+package com.autolux.showroommanagement.entity;
+
+public class Car {
+
+}

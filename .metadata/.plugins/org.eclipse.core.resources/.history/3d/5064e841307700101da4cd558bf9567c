@@ -1,0 +1,76 @@
+package com.phoneworld.mobileinventory.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "mobile_table")
+public class Mobile {
+
+    @Id
+    private int mobileId;
+
+    @Column(name = "brand", nullable = false)
+    private String brand;
+
+    @Column(name = "model", nullable = false)
+    private String model;
+
+    @Column(name = "price")
+    private double price;
+
+    @Column(name = "storage")
+    private int storage;  // in GB
+
+    public Mobile() {
+    }
+
+    public Mobile(int mobileId, String brand, String model, double price, int storage) {
+        this.mobileId = mobileId;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.storage = storage;
+    }
+
+    // Getters and Setters
+
+    public int getMobileId() {
+        return mobileId;
+    }
+
+    public void setMobileId(int mobileId) {
+        this.mobileId = mobileId;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getStorage() {
+        return storage;
+    }
+
+    public void setStorage(int storage) {
+        this.storage = storage;
+    }
+}
