@@ -1,5 +1,3 @@
----
-
 # 🐍 Hibernate Projects
 
 ![Java](https://img.shields.io/badge/Java-8+-blue.svg)
@@ -51,6 +49,7 @@ The aim is to provide **hands-on Hibernate learning** with practical business pr
 Each project follows the **Maven standard layout**:
 
 ```
+
 project-name/
 │── src/main/java/
 │   └── com.companyname.projectname/
@@ -72,7 +71,8 @@ project-name/
 │
 │── src/test/java/            # Unit tests
 │── pom.xml                   # Maven configuration
-```
+
+````
 
 ---
 
@@ -83,7 +83,7 @@ project-name/
 ```bash
 git clone https://github.com/RohanBansal01/Hibernate-Projects.git
 cd Hibernate-Projects
-```
+````
 
 2️⃣ **Import project**
 
@@ -138,8 +138,47 @@ Hibernate will create tables and perform CRUD operations.
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions! To contribute:
+
+1. **Fork** the repository
+2. **Clone** your fork
+
+   ```bash
+   git clone https://github.com/<your-username>/Hibernate-Projects.git
+   cd Hibernate-Projects
+   ```
+3. **Create a new branch**
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Make changes & commit**
+
+   ```bash
+   git add .
+   git commit -m "Add: your feature description"
+   ```
+5. **Push to your fork**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+6. Open a **Pull Request** on GitHub 🎉
+
+📌 Guidelines:
+
+* Follow existing **naming conventions** and **code style**
+* Keep commits **small & meaningful**
+* Update documentation if your change affects it
+
+---
+
 ## 📜 License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
+
+
