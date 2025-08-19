@@ -1,4 +1,4 @@
-# 🐍 Hibernate Projects
+# Hibernate Projects
 
 ![Java](https://img.shields.io/badge/Java-8+-blue.svg)
 ![Hibernate](https://img.shields.io/badge/Hibernate-ORM-green.svg)
